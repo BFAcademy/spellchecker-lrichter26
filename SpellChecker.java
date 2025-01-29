@@ -7,7 +7,26 @@ public class SpellChecker
       private String[] dictionary = new String[127143];
       
       // WRITE Your Methods HERE!
-
+      public void printFirst(int x) {
+         for (int i = 0; i < x; i++) {
+            System.out.println(dictionary[i]);
+         }
+      }
+      public boolean spellcheck(String in) {
+         for (String word : dictionary) {
+            if (word.equals(in)) {
+               return true;
+            }
+         }
+         return false;
+      }
+      public void printStartsWith(String in) {
+         for (String word : dictionary) {
+            if (word.startsWith(in)) {
+               System.out.println(word);
+            }
+         }
+      }
 
 
 
@@ -16,7 +35,6 @@ public class SpellChecker
         // Let's use java.nio method readAllLines!
         List<String> lines = Files.readAllLines(Paths.get("dictionary.txt"));
         dictionary = lines.toArray(dictionary);
-        System.out.println("Dictionary size: " + dictionary.length);
         
         /* The old java.io.* Scan/File method of reading in files, replaced by java.nio above 
         // create File object
@@ -38,5 +56,4 @@ public class SpellChecker
      */
         
       }  // end of constructor
-     
    }
