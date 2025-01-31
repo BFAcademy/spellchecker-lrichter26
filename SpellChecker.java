@@ -4,12 +4,12 @@ import java.util.*;
 
 public class SpellChecker
    {
-      private String[] dictionary = new String[127143];
+      private List<String> dictionary = new ArrayList();
       
       // WRITE Your Methods HERE!
       public void printFirst(int x) {
          for (int i = 0; i < x; i++) {
-            System.out.println(dictionary[i]);
+            System.out.println(dictionary.get(i));
          }
       }
       public boolean spellcheck(String in) {
@@ -31,10 +31,18 @@ public class SpellChecker
 
 
 
-      public SpellChecker() throws IOException {
+      public SpellChecker() {
         // Let's use java.nio method readAllLines!
+        try {
         List<String> lines = Files.readAllLines(Paths.get("dictionary.txt"));
-        dictionary = lines.toArray(dictionary);
+        for (String word : lines) {
+         if (word.length() == 4) {
+            dictionary.add(word);
+         }
+         
+        }
+      }
+      catch (Exception e) {}
         
         /* The old java.io.* Scan/File method of reading in files, replaced by java.nio above 
         // create File object
